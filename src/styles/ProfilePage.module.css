@@ -22,6 +22,7 @@
 	box-shadow: 0 1px 4px rgb(0 0 0 / 4%);
 	padding: 22px 2%;
 	color: #303e4b;
+	position: relative;
 	font-weight: 400;
 	font-size: 12px;
 }
@@ -44,4 +45,18 @@
 .profile_page_title {
 	margin: 10px;
 	margin-left: 5px;
+}
+.profile {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+}
+.profile_page_img {
+	position: absolute;
+	right: 40px;
+	top: 20px;
+}
+.profile_page_img > img {
+	height: 200px;
+	width: 200px;
 }

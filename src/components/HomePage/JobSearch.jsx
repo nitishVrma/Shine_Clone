@@ -1,14 +1,7 @@
 import React from "react"
+import { Tabs } from "../../styled-components/styled-components";
 import styles from "../../styles/HomePage.module.css"
-import styled from "styled-components"
 
-const Tabs = styled.div`
-cursor: pointer;
-padding: 0px 20px;
-border-bottom:${props => (props.tab === props.t) ? "4px solid #fbaf18;" : "none"};
-font-weight:${props => (props.tab === props.t) ? "700" : "none"};
-font-size:${props => (props.tab === props.t) ? "15px" : "14px"};
-`
 export function JobSearch() {
     const [tab, setTabs] = React.useState(1);
     return <section className={styles.job_search}>

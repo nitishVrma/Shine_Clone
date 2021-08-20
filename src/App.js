@@ -95,18 +95,33 @@ function App() {
 		setProfilePage(true);
 	};
 	if (profilePage) {
-		return (
-			<ProfilePage
-				jobList={jobList}
-				home={home}
-				login={login}
-				register={register}
-				profile={profile}
-				user={user}
-				showJob={showJob}
-				setIsAuth={setIsAuth}
-			/>
-		);
+		if (isAuth === "true" || isAuth === true) {
+			return (
+				<ProfilePage
+					jobList={jobList}
+					home={home}
+					login={login}
+					register={register}
+					profile={profile}
+					user={user}
+					isAuth={isAuth}
+					showJob={showJob}
+					setIsAuth={setIsAuth}
+				/>
+			);
+		} else {
+			return (
+				<Login
+					home={home}
+					login={login}
+					register={register}
+					user={user}
+					setUser={setUser}
+					setIsAuth={setIsAuth}
+					showJob={showJob}
+				/>
+			);
+		}
 	}
 	if (postJobPage) {
 		return (
@@ -136,6 +151,7 @@ function App() {
 						profile={profile}
 						user={user}
 						setIsAuth={setIsAuth}
+						isAuth={isAuth}
 						showJob={showJob}
 					/>
 				</div>
@@ -143,7 +159,13 @@ function App() {
 		} else {
 			return (
 				<div className="App">
-					<HomePage post={post} home={home} login={login} register={register} />
+					<HomePage
+						jobList={jobList}
+						post={post}
+						home={home}
+						login={login}
+						register={register}
+					/>
 				</div>
 			);
 		}
@@ -156,20 +178,35 @@ function App() {
 		);
 	}
 	if (showJobsPage) {
-		return (
-			<div className="App">
-				<ShowJobs
-					jobList={jobList}
+		if (isAuth === "true" || isAuth === true) {
+			return (
+				<div className="App">
+					<ShowJobs
+						jobList={jobList}
+						home={home}
+						login={login}
+						register={register}
+						profile={profile}
+						user={user}
+						showJob={showJob}
+						isAuth={isAuth}
+						setIsAuth={setIsAuth}
+					/>
+				</div>
+			);
+		} else {
+			return (
+				<Login
 					home={home}
 					login={login}
 					register={register}
-					profile={profile}
 					user={user}
-					showJob={showJob}
+					setUser={setUser}
 					setIsAuth={setIsAuth}
+					showJob={showJob}
 				/>
-			</div>
-		);
+			);
+		}
 	}
 	if (jobListPage) {
 		return (
@@ -183,6 +220,7 @@ function App() {
 					user={user}
 					showJob={showJob}
 					setIsAuth={setIsAuth}
+					isAuth={isAuth}
 				/>
 			</div>
 		);

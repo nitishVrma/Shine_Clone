@@ -1,0 +1,32 @@
+.showjobs_div {
+	margin-top: 10px;
+}
+.showjobs_div_img {
+	width: 95%;
+}
+.showjobs_div_cross {
+	margin-left: 3%;
+	cursor: pointer;
+}
+.box_1 {
+	width: 80%;
+	margin-left: 5%;
+}
+.box_2 {
+	margin-left: 3%;
+}
+.box_2 > div:first-child {
+	padding: 5%;
+	background-color: #fbaf18;
+	color: #fff;
+	text-align: center;
+}
+.box_2 > div:last-child {
+	text-align: center;
+	font-size: 13px;
+	color: #5364c4;
+}
+.box_7 {
+	cursor: pointer;
+	margin: 5px;
+}

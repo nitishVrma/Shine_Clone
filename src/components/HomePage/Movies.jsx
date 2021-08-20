@@ -11,7 +11,6 @@ export function Movies() {
 						<img
 							alt="Movies With Motivational Quotes"
 							data-src="https://images.ottplay.com/images/promotions/Shine/desktop-home-1.png"
-							class="lozad"
 							src="https://images.ottplay.com/images/promotions/Shine/desktop-home-1.png"
 							data-loaded="true"
 						/>
@@ -21,7 +20,6 @@ export function Movies() {
 						<img
 							alt="Movies With Motivational Quotes"
 							data-src="https://images.ottplay.com/images/promotions/Shine/desktop-home-2.png"
-							class="lozad"
 							src="https://images.ottplay.com/images/promotions/Shine/desktop-home-2.png"
 							data-loaded="true"
 						/>
@@ -31,7 +29,7 @@ export function Movies() {
 						<img
 							alt="Movies With Motivational Quotes"
 							data-src="https://images.ottplay.com/images/promotions/Shine/desktop-home-3.png"
-							class="lozad"
+		
 							src="https://images.ottplay.com/images/promotions/Shine/desktop-home-3.png"
 							data-loaded="true"
 						/>
@@ -41,7 +39,6 @@ export function Movies() {
 						<img
 							alt="Movies With Motivational Quotes"
 							data-src="https://images.ottplay.com/images/promotions/Shine/desktop-home-4.png"
-							class="lozad"
 							src="https://images.ottplay.com/images/promotions/Shine/desktop-home-4.png"
 							data-loaded="true"
 						/>

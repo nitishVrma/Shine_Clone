@@ -12,7 +12,7 @@
 	color: #303e4b;
 	display: flex;
 	align-items: center;
-	box-shadow: 0 0 8px 0 rgb(0 0 0 / 21%);
+	box-shadow: 0 0 8px 0 rgb(0 0 1 / 21%);
 }
 .log_navbar > img {
 	margin-left: 250px;
@@ -30,6 +30,7 @@
 	justify-content: center;
 	align-items: center;
 	padding-bottom: 20px;
+	min-width: 100vh;
 }
 .log_container_left {
 	padding: 20px 40px 0 40px;

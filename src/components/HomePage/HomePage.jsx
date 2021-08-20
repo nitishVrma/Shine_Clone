@@ -16,12 +16,12 @@ import styles from "../../styles/HomePage.module.css"
 import { Movies } from "./Movies"
 import { Footer } from "./Footer"
 import { JobSearch } from "./JobSearch"
-export function HomePage({ post,home,login,register}) {
+export function HomePage({ post,home,login,register,jobList}) {
     const [header, setHeader] = React.useState(false);
     return <React.Fragment>
         <div className={styles.homepage_body}>
             <NavBar home={home} post={post}/>
-        <Register header={header} setHeader={setHeader} home={home} login={login} register={ register}/>
+        <Register jobList={jobList} header={header} setHeader={setHeader} home={home} login={login} register={ register}/>
         <CoolPlaces />
         <TopCompanies />
         <InfyAd />

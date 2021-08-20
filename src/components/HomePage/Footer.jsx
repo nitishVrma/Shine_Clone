@@ -33,7 +33,7 @@ export function Footer() {
                         <strong>080-47105555</strong>
                         <p>contactus@shine.com</p>
                         <strong>Follow us</strong>
-                        <div>
+                        <div className={styles.social_links}>
                             <img src={process.env.PUBLIC_URL + '/lk.png'} alt=""/>
                             <img src={process.env.PUBLIC_URL + '/twitter.png'} alt=""/>
                             <img src={process.env.PUBLIC_URL + '/facebook.png'} alt=""/>

@@ -55,26 +55,26 @@
 	width: 170px;
 	background: #fff;
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 20%);
-	top: 27px;
-	padding: 10px;
-	padding-left: 20px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	border-top-right-radius: 5px;
+	top: 30px;
 	display: none;
 	transition: 0.5s;
-}
-.services {
-	width: 200px;
 }
 .jobs > li,
 .services > li,
 .resources > li {
 	margin-top: 8px;
-	width: 100%;
+	padding: 8px;
+	padding-left: 15px;
 	cursor: pointer;
-	display: inline-block;
 	text-align: left;
+	width: 170px;
+}
+.services,
+.services > li {
+	width: 200px;
 }
 .jobs > li:hover,
 .services > li:hover,

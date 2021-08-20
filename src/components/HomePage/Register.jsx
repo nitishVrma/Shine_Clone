@@ -1,6 +1,23 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styles from "../../styles/HomePage.module.css"
-export function Register({ header, setHeader, register, login }) {
+export function Register({ header, setHeader, register, login, jobList }) {
+    const [count, setCounter] = useState(0);
+    const [title, setTitle] = useState("");
+    const [location, setLocation] = useState("");
+
+    
+    const handleSearch = () => {
+        setCounter(count + 1);
+        
+		    localStorage.setItem("title", title);
+		    localStorage.setItem("location", location);
+	    
+        jobList();
+    }
+    useEffect(() => {
+            localStorage.setItem("location","");
+            localStorage.setItem("title", "");
+    },[])
     if (header) {
         return <section className={styles.register_2}>
             <div className={ styles.register_title}>
@@ -8,8 +25,12 @@ export function Register({ header, setHeader, register, login }) {
                 <img onClick={()=>setHeader(false)} src="https://image.flaticon.com/icons/png/128/5073/5073941.png"  alt=""/>
             </div>
             <div className={styles.register_inputs}>
-                <input type="text" placeholder="Job title, skills"></input>
-                <input type="text" placeholder="Location"></input>
+                <input onChange={(e) => {
+                    setTitle(e.target.value);
+                }} type="text" placeholder="Job title, skills"></input>
+                <input onChange={(e) => {
+                    setLocation(e.target.value)
+                }} type="text" placeholder="Location"></input>
                 <select placeholder="Experience (Years)">
                     <option>Experience (Years)</option>
                     <option>0 Yrs</option>
@@ -40,7 +61,7 @@ export function Register({ header, setHeader, register, login }) {
                     <option>25 Yrs</option>
                     <option>25+ Yrs</option>
                 </select>
-                <button>Submit</button>
+                <button onClick={handleSearch}>Submit</button>
                </div>
     </section>
     }

@@ -30,15 +30,13 @@ export function LoginContainer({ showJob,home, login, register,setUser,user,setI
         }
         else {
             setUser({ ...data[data.length - 1] });
-            // console.log(data[data.length - 1]);
             setIsAuth(true);
             localStorage.setItem("isAuth", true);
             localStorage.setItem("user", JSON.stringify([data[data.length-1]]));
-            // localStorage.setItem("user", JSON.stringify([user]));
             alert("You have Successfully logged in !!!");
             setTimeout(() => {
                 showJob();
-            }, 1500);
+            }, 500);
 
         }
     }
@@ -114,7 +112,7 @@ export function LoginContainer({ showJob,home, login, register,setUser,user,setI
             <div>
                 <div className={styles.log_card}>
                     <div>
-                        <img src={ process.env.PUBLIC_URL+"img_1.png"}alt=""/>
+                        <img src={ process.env.PUBLIC_URL+"/img_1.png"}alt=""/>
                     </div>
                     <div>
                         <p><strong>Create your account and receive matching jobs automatically</strong></p>
@@ -123,7 +121,7 @@ export function LoginContainer({ showJob,home, login, register,setUser,user,setI
                 </div>
                 <div className={styles.log_card}>
                     <div>
-                        <img src={ process.env.PUBLIC_URL+"img_2.png"}alt=""/>
+                        <img src={ process.env.PUBLIC_URL+"/img_2.png"}alt=""/>
                     </div>
                     <div>
                         <p><strong>Be completely anonymous</strong></p>
@@ -132,7 +130,7 @@ export function LoginContainer({ showJob,home, login, register,setUser,user,setI
                 </div>
                 <div className={styles.log_card}>
                     <div>
-                        <img src={ process.env.PUBLIC_URL+"img_3.png"}alt=""/>
+                        <img src={ process.env.PUBLIC_URL+"/img_3.png"}alt=""/>
                     </div>
                     <div>
                         <p><strong>Equip yourself for a great career</strong></p>

@@ -5,7 +5,7 @@ export function Premium() {
         <div>
             <div className={styles.premium_crown}>
                 <div>
-                <img src={process.env.PUBLIC_URL + `premium_crown.png`} alt="" />
+                <img src={process.env.PUBLIC_URL + `/premium_crown.png`} alt="" />
                 </div>
                 <h2 className={styles.premium_title}>Shine Premium</h2></div>
             
@@ -13,19 +13,19 @@ export function Premium() {
                 <h5>Fastrack your job search with our premium services</h5>
                 <div className={styles.premium_container}>
                     <div>
-                        <img src={process.env.PUBLIC_URL+`green_tick.png`}alt=""/>
+                        <img src={process.env.PUBLIC_URL+`/green_tick.png`}alt=""/>
                         <p>Enhanced Profile</p>
                     </div>
                     <div>
-                        <img src={process.env.PUBLIC_URL+`green_tick.png`} alt=""/>
+                        <img src={process.env.PUBLIC_URL+`/green_tick.png`} alt=""/>
                         <p>10x higher visibility to recruiters</p>
                     </div>
                     <div>
-                        <img src={process.env.PUBLIC_URL+`green_tick.png`} alt=""/>
+                        <img src={process.env.PUBLIC_URL+`/green_tick.png`} alt=""/>
                         <p>Insights on other applicants</p>
                     </div>
                     <div>
-                        <img src={process.env.PUBLIC_URL+`green_tick.png`} alt=""/>
+                        <img src={process.env.PUBLIC_URL+`/green_tick.png`} alt=""/>
                         <p>Interview Ready</p>
                     </div>
                 </div>

@@ -247,6 +247,7 @@
 	text-decoration: none;
 }
 .reg_footer {
+	margin-top: 30px;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -256,8 +257,6 @@
 	clear: both;
 	color: #707070;
 	font-size: 12px;
-	bottom: 0;
-	left: 0;
 	width: 100%;
 }
 .footer_cont_1 {

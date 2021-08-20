@@ -3,6 +3,7 @@ import { NavBar } from "../HomePage/NavBar"
 import styles from "../../styles/PostJob.module.css"
 import { RegisterFooter } from "../Register/RegisterFooter"
 import axios from "axios"
+import {v4 as  uuid} from "uuid"
 
 export function PostJob({ home, post }) {
     const payload = {
@@ -56,6 +57,8 @@ export function PostJob({ home, post }) {
             axios.post("http://localhost:3004/jobs", job);
         } catch (e) {
             console.log(e);
+        } finally {
+            setJob({...payload})
         }
         
     }
@@ -76,17 +79,17 @@ export function PostJob({ home, post }) {
            <div className={styles.secnav}>
 
                <div className={styles.deactive}>
-                    <img className={styles.img2} src={process.env.PUBLIC_URL+`package.png`} alt="packaged"/>
+                    <img className={styles.img2} src={process.env.PUBLIC_URL+`/package.png`} alt="packaged"/>
                     <strong className={styles.s1}>Package details</strong>
                </div>
 
                 <div className={styles.personal}>
-               <img src={process.env.PUBLIC_URL+`avatar2.png`} alt="avatar2"/>
+               <img src={process.env.PUBLIC_URL+`/avatar2.png`} alt="avatar2"/>
                     <strong className={styles.s1}>Personal details</strong>
                </div>
 
                <div className={styles.payment}>
-               <img src={process.env.PUBLIC_URL+`payment.png`} alt="payment"/>
+               <img src={process.env.PUBLIC_URL+`/payment.png`} alt="payment"/>
                    <strong className={styles.s1}>Payment mode</strong>
                    </div>
            </div>
@@ -102,12 +105,13 @@ export function PostJob({ home, post }) {
                             <h3 className={ styles.h41}>Total Posts</h3>
                          <h3 className={styles.h42}>Mobile</h3>
                     </div>
-                    <div className={styles.inp1}>
-                            <input type="Number" name="name" className={styles.text1}
+                        <div className={styles.inp1}>
+                            
+                            <input value={job.name} type="Number" name="name" className={styles.text1}
                            placeholder="" required="" onChange={HandleChange}  
                            aria-required="true" aria-invalid="true"/>
 
-                            <span  className={styles.c_code}><input id="mobile_placeholder" className={styles.text2}
+                            <span  className={styles.c_code}><input value={job.mobile} id="mobile_placeholder" className={styles.text2}
                                    type="Number" name="mobile" onChange={HandleChange}
                                    placeholder="+91" aria-label="mobile_placeholder"/ ></span>
                     </div>
@@ -117,13 +121,14 @@ export function PostJob({ home, post }) {
                          <h3 className={styles.h44}>Designation</h3>
                     </div>
                         <div className={styles.inp1}>
-                            <input onChange={HandleChange} type="text" name="company" className={styles.text1}
+                            <input value={job.company} onChange={HandleChange} type="text" name="company" className={styles.text1}
                            placeholder="" required="" id="id_email_id" 
                            aria-required="true" aria-invalid="true"
                            aria-describedby="id_email_id-error"/>
 
-                         <input onChange={HandleChange} type="text" name="designation" className={styles.text2} 
-                           placeholder="" required="" id="id_email_id" 
+                            <input
+                         value={job.designation}       onChange={HandleChange} type="text" name="designation" className={styles.text2}
+                           placeholder="" required="" id="id_email" 
                            aria-required="true" aria-invalid="true"
                            aria-describedby="id_email_id-error"/>
                     </div>
@@ -132,20 +137,20 @@ export function PostJob({ home, post }) {
                             <div className={styles.pol1}>
                             <li>
                                     <input name="check_box" type="checkbox" value="" className={styles.checkbox} id="id_check_box" aria-label="terms" placeholder=""/>
-                                    <span class="term">I agree to the
+                                    <span className="term">I agree to the
                                     <a href="/termsandconditions">Terms &amp; Conditions</a>
                                         <span className={styles.name_exit}></span>
                                     </span>
                             </li>
                             
-                            <li style={{marginTop:"5px"}}>
+                            <li className={styles.pol2}>
                                     <input name="check_box_kyc" type="checkbox" value="" className={styles.checkbox} id="id_check_box_kyc" aria-label="kyc" placeholder=""/>
                                     <span className={styles.term}>I agree to share my KYC documents with Shine</span>
                             </li>
                             </div>
 
                             <li className={styles.mtl}>
-                                <button onClick={HandleContinue} classname={styles.continue_button} >Continue</button>
+                                <button onClick={HandleContinue} className={styles.continue_button} >Continue</button>
                             </li>
                         </ul>
                    </div> 
@@ -158,7 +163,7 @@ export function PostJob({ home, post }) {
                     <div className={styles.jobLists_content}>
                         {
                             jobs.map(e => {
-                                return <div className={styles.jobLists_card}>
+                                return <div key={uuid()} className={styles.jobLists_card}>
                             <div className={styles.jobLists_card_top}>
                             <h3>{e.company}</h3>
                                         <h5>Post - {e.designation}</h5>
@@ -182,7 +187,7 @@ export function PostJob({ home, post }) {
 
           <div className={styles.footer}>
           <p>If you are looking for any information, please feel free to contact us. We will be glad to help.</p>
-          <img className={styles.imgf} src={process.env.PUBLIC_URL+`phone.png`} alt="phone"/> <a href="tel:080-47105555">080-47105555</a>
+          <img className={styles.imgf} src={process.env.PUBLIC_URL+`/phone.png`} alt="phone"/> <a href="tel:080-47105555">080-47105555</a>
 
           <a className={styles.a1} href="mailto:recruiterservices@shine.com">recruiterservices@shine.com</a>
           </div>

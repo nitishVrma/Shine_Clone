@@ -3,33 +3,56 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import styles from '../../styles/jobList.module.css'
 import ShowNavBar from '../showJobs/ShowNavBar'
-import {data} from '../../data.js'
+import { data } from '../../data.js'
+import { v4 as uuid } from "uuid";
 
 
-export default function Lists({setIsAuth,home, jobList,user,profile,showJob}) {
+export default function Lists({isAuth,setIsAuth,home, jobList,user,profile,showJob,login}) {
 
 
-    
+    const title = localStorage.getItem("title");
+    const location = localStorage.getItem("location");
     const[data1,setdata] =useState(data)
     const[selected,setSelected] = useState(data1)
     const[status,setStatus] = useState(["Apply Here","white"])
-    const[input,setInput] = useState("")
+    const[input,setInput] = useState(title)
 
     const handleChange = function(e){
         setInput(e.target.value)
-        console.log(input)
+        //console.log(input)
     }
 
     const handleSearch = function(){
         let searched = data.filter((e) => {
-            return e.searchKey === input;
+            return e.searchKey === input.toLowerCase();
         })
-        console.log(searched)
+        setInput("")
         if(searched.length !== 0){
             setdata(searched)
         }
+        else {
+            alert(`Sorry we deeply regret that no jobs is available for ${input} , Search other title i.e. java , php `)
+        }
     }
-
+    useEffect(() => {
+        if (title.length === 0 && location.length === 0) {
+            return;
+        }
+        let searched = data.filter((e) => {
+            if (location.length !== 0&&title.length === 0) {
+          return e.location.toLowerCase() === location.toLowerCase();  
+            }
+            if (title.length !== 0&&location.length === 0) {
+              return e.searchKey === title.toLowerCase();   
+            }
+            return e.searchKey === title.toLowerCase()&&e.location.toLowerCase()===location.toLowerCase();
+    })
+        if(searched.length !== 0){
+            setdata(searched)
+        } else {
+            alert(`Sorry we deeply regret that no jobs is available for this credentials , Search other title i.e. java , php `)
+        }
+},[title,location])
     useEffect(() => {
         setSelected(data1);
         setStatus(["Apply Here","white","gold"])
@@ -46,11 +69,11 @@ export default function Lists({setIsAuth,home, jobList,user,profile,showJob}) {
         }))
     }
     return (<>
-            <ShowNavBar setIsAuth={setIsAuth} home={home} jobList={jobList} user={user} profile={profile} showJob={ showJob}/>
+            <ShowNavBar isAuth={isAuth} login={login} setIsAuth={setIsAuth} home={home} jobList={jobList} user={user} profile={profile} showJob={ showJob}/>
         <div className={styles.main}>
             <div  className={styles.filter}>
                 <div className={styles.input}>
-                   <input type={styles.text} onChange={handleChange} placeholder="Job skills" />
+                   <input value={input} type={styles.text} onChange={handleChange} placeholder="Job skills" />
                    <i className="fas fa-search fa-lg" onClick={handleSearch}></i>
                 </div>
                 <p>Filter by</p>
@@ -169,7 +192,7 @@ export default function Lists({setIsAuth,home, jobList,user,profile,showJob}) {
             <div className={styles.container}>
             <div className={styles.leftList}>
                 {data1.map((e) => {
-                    return <div keyid={e.id} onClick={() => handleClick(e.id)} >
+                    return <div key={uuid()} onClick={() => handleClick(e.id)} >
                         
                         <h3><i className="fas fa-gem"></i>. {e.jobTitle}</h3>
                         <h5>{e.aboutCompany[0]}</h5>
@@ -198,7 +221,7 @@ export default function Lists({setIsAuth,home, jobList,user,profile,showJob}) {
                     <div className={styles.skills}>
                     <h3>Key Skills</h3>
                     {selected[0].keySkills.map((e) => {
-                        return <button>{e}</button>
+                        return <button key={uuid()}>{e}</button>
                     })}
                     <p><button>Take Assessments to Stand Out to Recruiters. <i className="fas fa-graduation-cap fa-lg"></i></button></p>
                 </div>
@@ -206,14 +229,14 @@ export default function Lists({setIsAuth,home, jobList,user,profile,showJob}) {
                     <h3>Job Details</h3>
                     <ul>
                     {selected[0].jobdetail.map((e)=>{
-                        return <li>{e}</li>
+                        return <li key={uuid()}>{e}</li>
                     })
                     }
                     </ul>
                     <h3> About Company</h3>
                     <ul>
                     {selected[0].aboutCompany.map((e)=>{
-                        return <li>{e}</li>
+                        return <li key={uuid()}>{e}</li>
                     })}
                     </ul>
                     

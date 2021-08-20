@@ -1,297 +1,23 @@
-
-import styled from "styled-components"
-
-
- import {useState} from "react"
-
- 
-
-const Inputdiv=styled.div`
-  background-color: #f4f5f5;
-  padding-top: 1%;
-  padding-bottom: 2.5%;
-
-`;
-
-const InputInsidediv=styled.div`
-  display: flex;
-  width: 60%;
-  margin: auto;
-
-  div:nth-child(1){
-     padding: 1%;
-     width: 80%;
-    border: solid 1px #e7e7e7;;
-     background-color: #fff;
-     color: gray;
- }
- div:nth-child(2){
-   
-     width: 5%;
-    
-     
- }
- div:nth-child(2) > img{
-     width: 100%;
-     height: 43px;
-     
- }
-
-`;
-
-const Choice=styled.div`
- width: 60%;
- margin: auto;
-
- 
-
-`
-const Heading=styled.p`
- color: #375076;
- font-size: 15px;
- font-weight: 400;
-
- 
-
-`
-
- const City=styled.div`
- width: 98%;
- background-color:#f4f5f5;
- padding: 1%;
- border: solid 1px #e7e7e7;
- border-radius: 2px;
- margin-top: 2%;
-
- >div{
-  display: flex;
- justify-content: space-between;
-   
- }
- >div  div{
- width: 15%;
- text-align: center;
-
-    
-}
-
-
->div >div > p{
-margin-left: 2.5%;
-
-    
-}
->div > div >p{
-  color: #5364c4;
-    cursor: pointer;
-    outline: medium none!important;
-    text-decoration: none;
-    font-size: 12px;
-    
-}
-
-`
-const ViewMore=styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  color: #5364c4;
-  font-size: 12px;
-  width: 100%;
-
-  >div{
-   
-    
-    margin-right: -4%;
-    
-  }
-`
-
-const Company=styled.div`
-width: 98%;
-background-color:#f4f5f5;
-padding: 1%;
-border: solid 1px #e7e7e7;
-border-radius: 2px;
-margin-top: 2%;
-
->div{
- display: flex;
-justify-content: space-between;
-  
-}
->div  div{
-width: 15%;
-text-align: center;
-
-   
-}`
-
-
-const Skill=styled.div`
- width: 98%;
- background-color:#f4f5f5;
- padding: 1%;
- border: solid 1px #e7e7e7;
- border-radius: 2px;
- margin-top: 2%;
-
- >div{
-  display: flex;
-  flex-wrap: wrap;
- 
- 
-   
- }
- >div  div{
- width: 20%;
- text-align: center;
-
- margin-left:3% ;
-    
-}
-
-
-
->div > div >p{
-  color: #5364c4;
-    cursor: pointer;
-    outline: medium none!important;
-    text-decoration: none;
-    font-size: 12px;
-    margin-left: 2.5%;
-}
-`
-
-const Designation=styled.div`
- width: 98%;
- background-color:#f4f5f5;
- padding: 1%;
- border: solid 1px #e7e7e7;
- border-radius: 2px;
- margin-top: 2%;
-
- >div{
-  display: flex;
-  justify-content: space-between;
- 
- 
-   
- }
- >div  div{
- width: 20%;
-padding: 2%;
-
-
-    
-}
-
-
-
->div > div > p{
-  color: #5364c4;
-    cursor: pointer;
-    outline: medium none!important;
-    text-decoration: none;
-    font-size: 12px;
-    margin-left: 2.5%;
-}
-
-`
-
-const IJ=styled.div`
- width: 98%;
- padding: 1%;
- margin-top: 2%;
-display: flex;
-justify-content: space-between;
-
-`
-
-const Industry=styled.div`
- width: 45%;
-
- background-color:#f4f5f5;
- padding: 1%;
- border: solid 1px #e7e7e7;
- border-radius: 2px;
-
- >div{
-  display: flex;
-  justify-content: space-between;
- }
-  >div  div{
- width: 50%;
-padding: 1%;
-
-  }
-div > div >p{
-  color: #5364c4;
-    cursor: pointer;
-    outline: medium none!important;
-    text-decoration: none;
-    font-size: 12px;
-    
-}
-`
-
-const Deparment=styled.div`
- width: 45%;
-
- background-color:#f4f5f5;
- padding: 1%;
- border: solid 1px #e7e7e7;
- border-radius: 2px;
-
- >div{
-  display: flex;
-  justify-content: space-between;
- }
-  >div  div{
- width: 50%;
-padding: 1%;
-
-  }
-div > div >p{
-  color: #5364c4;
-    cursor: pointer;
-    outline: medium none!important;
-    text-decoration: none;
-    font-size: 12px;
-    
-}
-`
-
-const InputBoxDiv=styled.div`
- position: absolute;
- width: 100%;
- top: 5.8%;
- padding-top:3%;
- background-color: #ffffffff;
- display: flex;
-padding-bottom: 1%;
-border-bottom: 3px solid #eee;
-
- input{
-   width: 30%;
-   height: 50%;
-   margin-left:2%;
-
- }
-
-
-
- `
- const Op=styled.div`
-     opacity: ${({showInputDiv})=>{return (showInputDiv)? 0.3: ""}};
- 
- 
- 
- `
-
-
-export default function ShowJobsPage(){
+import { useEffect, useState } from "react"
+import styles from "../../styles/ShowJobs.module.css"
+import { Choice, City, Company, Deparment, Designation, Heading, IJ, Industry, InputBoxDiv, Inputdiv, InputInsidediv, Op, Skill, ViewMore } from "../../styled-components/styled-components"
+export default function ShowJobsPage({ jobList}){
   const [showInputDiv,setShowInputDiv]=useState(false)
+  const [title, setTitle] = useState("");
+    const [location, setLocation] = useState("");
 
+    const handleSearch = () => {
+        
+        
+		    localStorage.setItem("title", title);
+		    localStorage.setItem("location", location);
+	    
+        jobList();
+    }
+    useEffect(() => {
+            localStorage.setItem("location","");
+            localStorage.setItem("title", "");
+    },[])
   const handleInput=()=>{
     setShowInputDiv(true) 
   }
@@ -309,7 +35,7 @@ export default function ShowJobsPage(){
            
            <City>
            <Heading>Browse Jobs in Top Cities</Heading>
-           <div style={{marginTop:"10px"}}>
+           <div className={styles.showjobs_div}>
              <div>
                <img src={process.env.PUBLIC_URL + "/deli.png"} alt="Logo" />
                <p>Jobs in Delhi</p>
@@ -339,27 +65,27 @@ export default function ShowJobsPage(){
                <div>View more..</div>
              </ViewMore>
            </City>
-          <Company>
+       <Company>
           <Heading>Browse Jobs in Top Companies</Heading>
-           <div style={{marginTop:"10px"}}>
+           <div className={styles.showjobs_div}>
              <div>
-               <img style={{width:"95%"}} src={process.env.PUBLIC_URL + "/angle.png"} alt="Logo" />
+               <img className={styles.showjobs_div_img} src={process.env.PUBLIC_URL + "/angle.png"} alt="Logo" />
               
              </div>
              <div>
-               <img style={{width:"95%"}} src={process.env.PUBLIC_URL + "/hew.png"} alt="Logo" />
+               <img className={styles.showjobs_div_img} src={process.env.PUBLIC_URL + "/hew.png"} alt="Logo" />
                
              </div>
              <div>
-               <img style={{width:"95%"}} src={process.env.PUBLIC_URL + "/iifl.png"} alt="Logo" />
+               <img className={styles.showjobs_div_img} src={process.env.PUBLIC_URL + "/iifl.png"} alt="Logo" />
             
              </div>
              <div>
-               <img style={{width:"95%"}} src={process.env.PUBLIC_URL + "/reliance.png"} alt="Logo" />
+               <img className={styles.showjobs_div_img} src={process.env.PUBLIC_URL + "/reliance.png"} alt="Logo" />
            
              </div>
              <div>
-               <img style={{width:"95%"}} src={process.env.PUBLIC_URL + "/yes.png"} alt="Logo" />
+               <img className={styles.showjobs_div_img} src={process.env.PUBLIC_URL + "/yes.png"} alt="Logo" />
               
              </div>
             
@@ -371,7 +97,7 @@ export default function ShowJobsPage(){
              </Company>
             <Skill>
             <Heading>Browse Jobs by Skill</Heading>
-           <div style={{marginTop:"10px"}}>
+           <div className={styles.showjobs_div}>
              <div>
                <img src={process.env.PUBLIC_URL + "/java.png"} alt="Logo" />
                <p>JAVA jobs</p>
@@ -609,29 +335,22 @@ export default function ShowJobsPage(){
         </Choice>
         </Op>
         {(showInputDiv)?<InputBoxDiv s={showInputDiv}>
-             <div style={{width:"80%",marginLeft:"5%"}}>
-                 <input type="text"  placeholder="Job title" />
-                 <input type="text"  placeholder="location"/>
+             <div className={styles.box_1}>
+                 <input onChange={(e) => {
+                    setTitle(e.target.value);
+                }} type="text"  placeholder="Job title" />
+                 <input onChange={(e) => {
+                    setLocation(e.target.value)
+                }} type="text"  placeholder="location"/>
                  <input type="number" placeholder="Experience in years "/>
              </div>
-             <div style={{marginLeft:"3%"}}>
-                 <div style={{padding:"5%" , backgroundColor:"#fbaf18" ,color:"#fff",textAlign:"center"}}>Search</div>
-                 <div style={{textAlign:"center",fontSize:"13px", color:"#5364c4"}}>Advance Search</div>
+             <div className={styles.box_2}>
+                 <div className={styles.box_7} onClick={handleSearch} >Search</div>
+                 <div className={styles.box_7} >Advance Search</div>
              </div>
-             <div style={{cursor:"pointer",marginLeft:"3%"}} onClick={()=>{setShowInputDiv(false)}}>x</div>
+             <div className={styles.showjobs_div_cross} onClick={()=>{setShowInputDiv(false)}}>x</div>
         
         </InputBoxDiv>: ""
 }
-        
- 
-   
- 
- 
  </>
-
-
-
-
-
-
 }

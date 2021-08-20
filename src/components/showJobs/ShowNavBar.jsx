@@ -1,73 +1,13 @@
 import React from "react"
-import styled from "styled-components"
-import styles from "./ShowNavBar.module.css"
-import {useState} from "react"
-const SearchJobs=styled.div`
-width: 8%;
-background-color: #ffffff;
-color: #707070;
- position: absolute;
- top: 5.8%;
- left: 7%;
-padding: 1%;
-box-shadow:  5px 5px 3px #eeee,
-             -5px -5px 3px #ffff;
+import styles from "../../styles/ShowNavBar.module.css"
+import { useState } from "react"
+import { SearchJobs, Profile,Service,SignOut} from "../../styled-components/styled-components";
 
-`;
-
-const  Profile=styled.div`
-width: 8%;
-background-color: #ffffff;
-color: #707070;
- position: absolute;
- top: 5.8%;
- left: 26%;
-padding: 1%;
-box-shadow:  5px 5px 3px #eeee,
-             -5px -5px 3px #ffff;
-
-`;
-
-const  Service=styled.div`
-width: 18%;
-background-color: #ffffff;
-color: #707070;
- position: absolute;
- top: 5.8%;
- left: 32%;
-padding: 1%;
-box-shadow:  5px 5px 3px #eeee,
-             -5px -5px 3px #ffff;
-
- >div{
-     display: flex;
-     justify-content: space-between;
- } 
- >div div{
-   width: 48%;
- }             
-
-`;
-const SignOut=styled.div`
-width: 8%;
-background-color: #ffffff;
-color: #707070;
- position: absolute;
- top: 5.8%;
- left: 88%;
- cursor: pointer;
-padding: 0.5%;
-box-shadow:  5px 5px 3px #eeee,
-             -5px -5px 3px #ffff;
-
-`;
-
-
-export default function ShowNavBar({setIsAuth,home,user,jobList,profile,showJob}) {
+export default function ShowNavBar({isAuth,setIsAuth,login,home,user,jobList,profile,showJob}) {
 const [searchJobContent,setSearchJobContent]=useState(false);
 const [profileContent,setProfileContent]=useState(false);
 const [serviceContent,setServiceContent]=useState(false);
-const [singnOut,setSignout]=useState(false)
+  const [singnOut, setSignout] = useState(false);
     const handleSearchJob=()=>{
         setSearchJobContent(!searchJobContent)
         setProfileContent(false)
@@ -94,21 +34,25 @@ const [singnOut,setSignout]=useState(false)
     setSearchJobContent(false)
     setProfileContent(false)
     setServiceContent(false)
-
-
- }
-
+  }
+  React.useEffect(() => {
+    if (user.name === undefined) {
+      user.name = "User";
+    }
+  }, [user]);
     return  <nav className={styles.nav}>
             <div className={styles.nav_left}>
-            <img src={process.env.PUBLIC_URL + "/NavBar_Logo.png"} alt="Logo" className={styles.logo}/>
+            <img onClick={home} src={process.env.PUBLIC_URL + "/NavBar_Logo.png"} alt="Logo" className={styles.logo}/>
                 <li className={styles.nav_tab} onClick={handleSearchJob}>Search Jobs</li>
                 <li className={styles.nav_tab} onClick={()=>{jobList()}} >Jobs For You</li>
                 <li className={styles.nav_tab}>Mailbox</li>
-                <li className={styles.nav_tab} onClick={handleProfile}>My Profile</li>
+        <li className={styles.nav_tab} onClick={() => {
+          handleProfile()
+        }}>My Profile</li>
                 <li className={styles.nav_tab} onClick={handleServices}>Services</li>
-            <li className={styles.career_guidance}><img src={process.env.PUBLIC_URL + "./Career_bulb.PNG"  } alt="career"/>Career Guidance</li>
+            <li className={styles.career_guidance}><img src={process.env.PUBLIC_URL + "/Career_bulb.png"  } alt="career"/>Career Guidance</li>
             </div>
-            <div className={styles.nav_profile} onClick={handleSignprofile}>{"hi, "+user.name}</div>
+            <div className={styles.nav_profile} onClick={handleSignprofile}>{isAuth===true?"hi, "+user.name:"hi, User"}</div>
           {(searchJobContent)?<SearchJobs>
                   <p>Jobs by City</p>
                   <p>Jobs by Skills</p>
@@ -119,13 +63,13 @@ const [singnOut,setSignout]=useState(false)
           </SearchJobs> : ""}
 
           {(profileContent)?<Profile>
-        <p style={{ cursor:"pointer",marginTop:"5px"}} onClick={() => { profile() } }>Profile</p>
-                  <p style={{ cursor:"pointer",marginTop:"5px"}}>Recrutier Action</p>
+        <p className={styles.nav_para} onClick={() => { profile() } }>Profile</p>
+                  <p className={styles.nav_para}>Recrutier Action</p>
                   
           </Profile> : ""}
           {(serviceContent)?<Service>
                    <div>
-                       <div style={{borderRight:"1px solid grey"}}>
+                       <div className={styles.div_nav}>
                            <h4>E-Learning</h4>
                            <p>Digital Marketing</p>
                            <p>Data Science</p>
@@ -147,7 +91,7 @@ const [singnOut,setSignout]=useState(false)
           </Service> : ""}
 
           {(singnOut)?<SignOut>
-              <p style={{ cursor:"pointer",margin:"5px"}}>Account setting</p>
+        {isAuth===true?<> <p className={styles.nav_para}>Account setting</p>
         <p onClick={() => {
           alert("You Have Successfully logged out");
           localStorage.setItem("isAuth", false);
@@ -156,9 +100,9 @@ const [singnOut,setSignout]=useState(false)
           setTimeout(() => {
             home();
 }, 100);
-        }} style={{ cursor:"pointer",margin:"5px"}}>Sign Out</p>
-
-
+        }} className={styles.nav_para}>Sign Out</p>
+</>:<></>
+        }
           </SignOut>: ""
 
           }
